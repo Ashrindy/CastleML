@@ -1,0 +1,6 @@
+[submodule "external/inih/inih"]
+	path = external/inih/inih
+	url = https://github.com/benhoyt/inih
+[submodule "external/detours/Detours"]
+	path = external/detours/Detours
+	url = https://github.com/microsoft/Detours
