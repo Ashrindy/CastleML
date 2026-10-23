@@ -14,8 +14,10 @@ jobs:
     name: build-windows
     runs-on: windows-latest
     steps:
-    - name: Checkout Repository
+    - name: Checkout
       uses: actions/checkout@v4
+      with:
+        submodules: recursive
       
     - name: Install MinGW
       uses: egor-tensin/setup-mingw@v3.0
@@ -25,7 +27,13 @@ jobs:
         version:
         
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} --preset mingw-windows-release
       
     - name: Build
-      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --parallel --preset mingw-windows-release
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: archives
+        path: out/build/x64-release/archives/devtools-*.zip
