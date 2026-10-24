@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Release")	
 	set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Os -fdata-sections -ffunction-sections -fno-ident" CACHE STRING "C++ Compiler flags" FORCE)
-	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lm -fPIC -fno-ident -s -Wl,--gc-sections -Wl,-Bstatic -lpthread" CACHE STRING "EXE link flags" FORCE)
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -lm -fPIC -fno-ident -s -Wl,--gc-sections" CACHE STRING "EXE link flags" FORCE)
 endif()
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
